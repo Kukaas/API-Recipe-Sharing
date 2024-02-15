@@ -71,6 +71,43 @@ app.post('/user/login', (req, res) => {
     }
 });
 
+//Update User
+app.put("/user/update/:id", (req, res) => {
+    // Find recipe by ID
+    const ID = parseInt(req.params.id);
+    const user = userData.find((c) => c.id === ID);
+    if (!user) return res.status(404).send("User not found");
+  
+    // Validate recipe data
+    const schema = Joi.object({
+      name: Joi.string(),
+      email:Joi.string().email(),
+      password: Joi.string()
+    });
+  
+    const { error } = schema.validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+  
+    // Merge the existing recipe with the new data from req.body
+    Object.assign(user, req.body);
+  
+    res.send(user);
+});
+
+//DELETE user
+app.delete('/user/delete/:id', (req,res)=>{
+  // Find recipe by ID
+  const ID = parseInt(req.params.id);
+  const user = userData.find((c) => c.id === ID);
+  if (!user) return res.status(404).send("User not found.");
+    
+  // Remove recipe from array
+  const index = userData.indexOf(user);
+  userData.splice(index, 1);
+    
+  res.send(user);
+});
+
 
 //GET all recipes
 app.get('/recipes', (req, res) => {
