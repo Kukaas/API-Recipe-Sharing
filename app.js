@@ -57,7 +57,7 @@ app.post('/user/login', (req, res) => {
         }
 
         if (req.body.password === user.password) {
-            const data = user.email;
+            const data = user.name;
                 // You might not want to send the password back in the response for security reasons
                 // password: user.password 
         
