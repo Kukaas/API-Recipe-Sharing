@@ -88,7 +88,7 @@ app.put("/user/update/:id", (req, res) => {
     const { error } = schema.validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
   
-    // Merge the existing recipe with the new data from req.body
+    // Merge the existing user with the new data from req.body
     Object.assign(user, req.body);
   
     res.send(user);
