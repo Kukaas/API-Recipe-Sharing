@@ -18,14 +18,14 @@ app.get('/', (req, res) => {
 
 //Register user
 app.post("/user/signup", (req, res) => {
-    // Validate recipe data
+    // Validate user data
     const schema = Joi.object({
       name: Joi.string().required(),
       email: Joi.string().required(),
       password: Joi.string().required(),
     });
 
-    //Check if the recipe name already exists
+    //Check if the user name already exists
     const existingUserByName = userData.find(user => user.name === req.body.name);
     if (existingUserByName) {
          return res.status(400).send("Name already exists");
@@ -36,7 +36,7 @@ app.post("/user/signup", (req, res) => {
          return res.status(400).send("Email already exists");
     }
   
-    // Create new recipe
+    // Create new user
     const newUser = {
       id: userData.length + 1,
       name: req.body.name,
@@ -73,12 +73,12 @@ app.post('/user/login', (req, res) => {
 
 //Update User
 app.put("/user/update/:id", (req, res) => {
-    // Find recipe by ID
+    // Find user by ID
     const ID = parseInt(req.params.id);
     const user = userData.find((c) => c.id === ID);
     if (!user) return res.status(404).send("User not found");
   
-    // Validate recipe data
+    // Validate user data
     const schema = Joi.object({
       name: Joi.string(),
       email:Joi.string().email(),
@@ -96,12 +96,12 @@ app.put("/user/update/:id", (req, res) => {
 
 //DELETE user
 app.delete('/user/delete/:id', (req,res)=>{
-  // Find recipe by ID
+  // Find user by ID
   const ID = parseInt(req.params.id);
   const user = userData.find((c) => c.id === ID);
   if (!user) return res.status(404).send("User not found.");
     
-  // Remove recipe from array
+  // Remove user from array
   const index = userData.indexOf(user);
   userData.splice(index, 1);
     
