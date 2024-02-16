@@ -127,10 +127,10 @@ app.get('/recipe/:id', (req, res) => {
           // Find recipe by ID
           const ID = req.params.id;
           const recipe = recipesData.find((c) => c.id === parseInt(ID));
-          if (!recipe) return res.status(404).send({ message: "Recipe not found." });
+          if (!recipe) return res.status(404).send("Recipe not found.");
           res.send(recipe);
     } catch (error) {
-        res.status(500).json({"message": 'An error occured'});
+        res.status(500).json('An error occured');
     }
 });
 
@@ -206,6 +206,11 @@ app.put("/recipe/update/:id", (req, res) => {
     if (!recipe) return res.status(404).send("Recipe not found.");
   
     // Validate recipe data
+    const existRecipe = recipesData.find(recipe => recipe.name === req.body.name);
+    if (existRecipe) {
+         return res.status(400).send("Recipe name already exists");
+    }
+    
     const schema = Joi.object({
       id: Joi.number().integer(),
       name: Joi.string(),
