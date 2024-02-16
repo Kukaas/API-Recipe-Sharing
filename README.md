@@ -9,7 +9,7 @@
 
 ## 💡 About the API
 
-This application is a Recipe Sharing System built using Node.js, Express, and MongoDB. It provides a RESTful API for creating, reading, updating, and deleting (CRUD) recipes.
+This application is a Recipe Sharing System built using Node.js and Express. It provides a RESTful API for creating, reading, updating, and deleting (CRUD) re.
 
 ## 🧩 Features
 
