@@ -174,6 +174,30 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 **Description:** Login a user.
 
+## Update a User
+
+**Endpoint:** `/user/update/:id`
+
+**Method:** `PUT`
+
+**Description:** Updates the recipe with the provided ID.
+
+**Parameters:**
+
+- `id`: The ID of the user.
+
+## Delete a User
+
+**Endpoint:** `/user/delete/:id`
+
+**Method:** `PUT`
+
+**Description:** Delete the user with the provided ID.
+
+**Parameters:**
+
+- `id`: The ID of the user.
+
 
 
 # 📚 Dependencies Guide
